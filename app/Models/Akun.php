@@ -18,7 +18,7 @@ class Akun extends Authenticatable
      * @var array<int, string>
      */
 
-    protected $table = "akun"; 
+    // protected $table = "akun"; 
     protected $fillable = [
         'name',
         'email',

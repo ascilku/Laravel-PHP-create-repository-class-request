@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SampleRequest;
 use App\Helpers\ResponseFormatter;
 use App\Http\Repositories\SampelRepository;
+use App\Http\Servis\SampleServis;
 
 
 
 class SampleController extends Controller
 {
-    private $sampelRepository;
+    private $sampleServis;
     public function __construct()
     {
-        $this->sampelRepository = new SampelRepository();
+        $this->sampleServis = new SampleServis();
     }
 
 
@@ -26,10 +27,12 @@ class SampleController extends Controller
         //     'sample'               => 'required|max:20' ,
         // ]); 
         $credentials = request(['name', 'email', 'password']);
-        // echo $credentials['name'];
-        $data = $this->sampelRepository->getDataPeymentMembers($credentials);
+        $data = $this->sampleServis->whereByEmailServis($credentials);
         // $data = ['kurni', 'hamsah', 'sandi'];
-        return ResponseFormatter::responFormatter('succes', 200, 'get berhasil', $data);
+        
+        return ResponseFormatter::responFormatter($data);
+
+        // return ResponseFormatter::responFormatter('succes', 200, 'get berhasil', $data);
            
         
             // if($sample == ""){

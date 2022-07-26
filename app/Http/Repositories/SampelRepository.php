@@ -19,6 +19,14 @@ class SampelRepository {
         $akun->save();
         return $akun;
     }
+
+    public function whereByEmailRepository($credentials){
+        
+        $email = Akun::where('email', $credentials)->first();
+
+        return $email;
+
+    }
     
 }
 
